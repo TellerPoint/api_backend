@@ -54,12 +54,12 @@ class merchants_model extends TellerPoint_Model {
         ),
          'vfpin' => array(
             'field' => 'merchant_vfpin',
-            'label' => 'Vodafone Cash Code',
+            'label' => 'Vodafone Cash Pin',
             'rules' => 'required|trim|numeric'
         ),
          'vftoken' => array(
             'field' => 'merchant_vftoken',
-            'label' => 'Vodafone Cash Code',
+            'label' => 'Vodafone Cash Token',
             'rules' => 'required|trim'
         )
     );

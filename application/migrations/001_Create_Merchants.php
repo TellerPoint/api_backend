@@ -30,11 +30,6 @@ class Migration_Create_Merchants extends CI_Migration {
                 'constraint' => '200',
                 'null' => TRUE
             ),
-            'merchant_email' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '200',
-                'null' => TRUE
-            ),
             'merchant_phone' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '200',
@@ -60,6 +55,11 @@ class Migration_Create_Merchants extends CI_Migration {
                 'null' => TRUE
             ),
             'merchant_vftoken' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '200',
+                'null' => TRUE
+            ),
+            'merchant_vfvendor' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '200',
                 'null' => TRUE

@@ -28,7 +28,6 @@ class TellerPoint_Controller extends REST_Controller {
             $data[$key] = $_POST[$key] = $value;
         }
         return $data;
-        
     }
 
 }

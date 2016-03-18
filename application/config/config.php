@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = '';
 
+$config['vfcash_api_url'] = 'http://testpay.vodafonecash.com.gh/';
 /*
 |--------------------------------------------------------------------------
 | Index File
