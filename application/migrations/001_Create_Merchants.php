@@ -44,12 +44,22 @@ class Migration_Create_Merchants extends CI_Migration {
                 'type' => 'TEXT',
                 'null' => TRUE
             ),
-            'merchant_password' => array(
+            'merchant_vfcode' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '200',
                 'null' => TRUE
             ),
-            'merchant_vfcode' => array(
+            'merchant_vfpin' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '200',
+                'null' => TRUE
+            ),
+            'merchant_vfpassword' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '200',
+                'null' => TRUE
+            ),
+            'merchant_vftoken' => array(
                 'type' => 'VARCHAR',
                 'constraint' => '200',
                 'null' => TRUE

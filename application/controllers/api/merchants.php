@@ -27,14 +27,11 @@ class merchants extends TellerPoint_Controller {
             $result = $this->merchants_model->get_all();
             $result = (array) $result;
             
-            $a = array();
-            
             foreach ($result as $value) {
-               $value->products = $this->products_model->get_where(array('merchant_id'=>$result['id']));
-               $a[] = $result;                       
+               $value->products = $this->products_model->get_where(array('merchant_id'=>$value->id));                  
             }
             
-            $this->response($a);
+            $this->response($result);
         }
         else{
             $result = $this->merchants_model->get_all($id);
@@ -58,7 +55,6 @@ class merchants extends TellerPoint_Controller {
         if ($this->form_validation->run()) {
 
             //process the upload
-            $merchant_data['merchant_password'] = encrypt($merchant_data['merchant_password']);
             $id = $this->merchants_model->save_update($merchant_data);
 
             $this->response($this->merchants_model->get_all($id), REST_Controller::HTTP_OK);

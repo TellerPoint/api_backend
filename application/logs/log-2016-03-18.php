@@ -25,3 +25,6 @@ ERROR - 2016-03-18 03:17:27 --> Severity: Notice --> Undefined index: id C:\xamp
 ERROR - 2016-03-18 03:18:11 --> Severity: Notice --> Undefined index: id C:\xampp\htdocs\Teller_Point\application\controllers\api\merchants.php 31
 ERROR - 2016-03-18 03:19:24 --> Severity: Notice --> Undefined index: id C:\xampp\htdocs\Teller_Point\application\controllers\api\merchants.php 32
 ERROR - 2016-03-18 03:20:46 --> Severity: Notice --> Undefined index: id C:\xampp\htdocs\Teller_Point\application\controllers\api\merchants.php 33
+ERROR - 2016-03-18 11:19:04 --> Severity: Notice --> Undefined index: id C:\xampp\htdocs\Teller_Point\application\controllers\api\merchants.php 31
+ERROR - 2016-03-18 11:19:43 --> Severity: Error --> Cannot use object of type stdClass as array C:\xampp\htdocs\Teller_Point\application\controllers\api\merchants.php 31
+ERROR - 2016-03-18 11:41:12 --> 404 Page Not Found: api/Merchant/index
