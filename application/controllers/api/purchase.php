@@ -42,7 +42,7 @@ class purchase extends TellerPoint_Controller {
             
             //post to the vodafone url to send sms to customer
             $post_array = array(
-                'vendor' => $merchant_data['merchant_vfvendor'],
+                'vendor' => $merchant_data->merchant_vfvendor,
                 'phone' => $purchase_data['customer_phone'],
                 'amount' => $purchase_data['product_amount']
             );
@@ -74,13 +74,13 @@ class purchase extends TellerPoint_Controller {
             $transaction_data = $this->purchase_model->get_all($validation_data['transaction_id']);
             if(!count($transaction_data)) $this->response ('Invalid Transaction Id', 404);
             
-            $merchant_data = $this->merchants_model->get_all($transaction_data['merchant_id']);
+            $merchant_data = $this->merchants_model->get_all($transaction_data->merchant_id);
             if (!count($merchant_data))$this->response("Merchant Not Found", 404);
              
             $post_array = array(
                 'smsCode' => $validation_data['smsCode'],
-                'merchantCode' => $merchant_data['merchant_vfcode'],
-                'vfPIN' => $merchant_data['merchant_vfpin']
+                'merchantCode' => $merchant_data->merchant_vfcode,
+                'vfPIN' => $merchant_data->merchant_vfpin
             );
 
             //post to the vodafone url to send sms to client
@@ -101,8 +101,8 @@ class purchase extends TellerPoint_Controller {
             
             //return the product detail with the transaction info
             $this->load->model('products_model');
-            $result = $this->products_model->get_all($transaction_data['product_id']);
-            $result->transaction = $transaction_data;
+            $result = $this->products_model->get_all($transaction_data->product_id);
+            $result->transaction = $this->purchase_model->get_all($validation_data['transaction_id']);
             
             $this->response($result);
                     
