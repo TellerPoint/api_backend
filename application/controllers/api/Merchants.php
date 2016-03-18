@@ -11,7 +11,7 @@
  *
  * @author Maxwell
  */
-class merchants extends TellerPoint_Controller {
+class Merchants extends TellerPoint_Controller {
 
     //put your code here
     function __construct($config = 'rest') {
