@@ -27,11 +27,6 @@ class merchants_model extends TellerPoint_Model {
             'label' => 'Merchant Name',
             'rules' => 'required|trim'
         ),
-         'email' => array(
-            'field' => 'merchant_email',
-            'label' => 'Merchant Email',
-            'rules' => 'required|trim|is_unique[t_merchants.merchant_email]|valid_email'
-        ),
          'phone' => array(
             'field' => 'merchant_phone',
             'label' => 'Merchant Phone',
@@ -42,6 +37,11 @@ class merchants_model extends TellerPoint_Model {
             'label' => 'Merchant Logo',
             'rules' => 'required|trim'
         ),
+         'vfvendor' => array(
+            'field' => 'merchant_vfvendor',
+            'label' => 'VfCash Vendor Name',
+            'rules' => 'required|trim'
+        ),
          'vfpassword' => array(
             'field' => 'merchant_vfpassword',
             'label' => 'Password',
@@ -50,7 +50,7 @@ class merchants_model extends TellerPoint_Model {
          'vfcode' => array(
             'field' => 'merchant_vfcode',
             'label' => 'Vodafone Cash Code',
-            'rules' => 'required|trim|numeric'
+            'rules' => 'required|trim|numeric|is_unique[t_merchants.merchant_vfcode]'
         ),
          'vfpin' => array(
             'field' => 'merchant_vfpin',
