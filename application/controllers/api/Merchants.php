@@ -85,6 +85,14 @@ class Merchants extends TellerPoint_Controller {
         $id = $this->get('id');
         if ($id) {
             $done = $this->merchants_model->delete($id);
+            
+            //also delete the product and transaction of the merchant
+            $this->load->model('products_model');
+            $this->load->model('purchase_model');
+             
+            $this->products_model->delete(null, array("merchant_id" => $id));
+            $this->purchase_model->delete(null, array("merchant_id" => $id));
+            
             if ($done)
                 $this->response($this->merchants_model->get_all(), 200);
         }

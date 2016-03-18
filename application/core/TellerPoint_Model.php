@@ -89,10 +89,14 @@ class TellerPoint_Model extends CI_Model {
         return $insert_id;
     }
 	
-    public function delete($id){
+    public function delete($id, $where = null){
 
-        if (!$id) return FALSE;
-        $success = $this->db->where($this->_primary_key, $id)->delete($this->_table_name);
+        if($where != null){
+            $this->db->where($where)->delete($this->_table_name);
+            return $this->db->affected_rows();
+        }
+               
+        $this->db->where($this->_primary_key, $id)->delete($this->_table_name);
         return $this->db->affected_rows();
     }
         
