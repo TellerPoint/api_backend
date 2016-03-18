@@ -41,7 +41,7 @@ class Merchants extends TellerPoint_Controller {
                $this->response($result, 200);
             }
         }
-         $this->response(NULL, 404);
+         $this->response(array("message" => "Resource Not Found"), 404);
     }
 
     public function data_post() {
@@ -58,8 +58,11 @@ class Merchants extends TellerPoint_Controller {
             $id = $this->merchants_model->save_update($merchant_data);
 
             $this->response($this->merchants_model->get_all($id), REST_Controller::HTTP_OK);
-        } else
-            $this->response(strip_tags(validation_errors()), REST_Controller::HTTP_BAD_REQUEST);
+        } else{
+            $error = array("message" => strip_tags(validation_errors()));
+            $this->response($error, REST_Controller::HTTP_BAD_REQUEST);
+        }
+            
     }
 
     public function data_put() {
@@ -74,7 +77,7 @@ class Merchants extends TellerPoint_Controller {
             if(count($result))$this->response($result, 200);
         }
 
-        $this->response(null, 404);
+        $this->response(array("message" => "Resource Not Found"), 404);
     }
 
     public function data_delete() {
@@ -86,7 +89,7 @@ class Merchants extends TellerPoint_Controller {
                 $this->response($this->merchants_model->get_all(), 200);
         }
 
-        $this->response(null, 404);
+        $this->response(array("message" => "Resource Not Found"), 404);
     }
 
     public function products_get() {
@@ -95,7 +98,7 @@ class Merchants extends TellerPoint_Controller {
         $mid = $this->get('mid');
         $pid = $this->get('pid');
         
-        $mid || $this->response(null, 404);
+        $mid || $this->response(array("message" => "Resource Not Found"), 404);
                 
         if ($pid == NULL){
             $result = $this->products_model->get_where(array('merchant_id'=>$mid));
@@ -105,6 +108,6 @@ class Merchants extends TellerPoint_Controller {
             $result = $this->products_model->get_where(array('id' =>$pid, 'merchant_id'=>$mid));
             $this->response($result, 200);
         }
-         $this->response(NULL, 404);
+         $this->response(array("message" => "Resource Not Found"), 404);
     }
 }

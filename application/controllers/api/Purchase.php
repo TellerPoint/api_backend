@@ -11,7 +11,7 @@
  *
  * @author Maxwell
  */
-class purchase extends TellerPoint_Controller {
+class Purchase extends TellerPoint_Controller {
 
     //put your code here
 
@@ -34,7 +34,7 @@ class purchase extends TellerPoint_Controller {
             $merchant_data = $this->merchants_model->get_all($_mid);
 
             if (!count($merchant_data))
-                $this->response("Merchant Not Found", 404);
+                $this->response(array("message" => "Merchant Not Found"), 404);
 
             //save transaction data 
             $purchase_data['status'] = 'Pending';
@@ -57,12 +57,14 @@ class purchase extends TellerPoint_Controller {
             curl_close($curl_handle);
 
             if (curl_errno($curl_handle) || trim($buffer) != 'success')
-                $this->response(curl_error($curl_handle), REST_Controller::HTTP_EXPECTATION_FAILED);
+                $this->response(array("message" => curl_error($curl_handle)), REST_Controller::HTTP_EXPECTATION_FAILED);
 
             $this->response($this->purchase_model->get_all($tranid));
             
-        } else
-            $this->response(strip_tags(validation_errors()), 400);
+        } else{
+            $error = array("message" => strip_tags(validation_errors()));
+            $this->response($error, REST_Controller::HTTP_BAD_REQUEST);
+        }
     }
 
     public function validate_post() {
@@ -72,10 +74,10 @@ class purchase extends TellerPoint_Controller {
          if ($this->form_validation->run()) {
              
             $transaction_data = $this->purchase_model->get_all($validation_data['transaction_id']);
-            if(!count($transaction_data)) $this->response ('Invalid Transaction Id', 404);
+            if(!count($transaction_data)) $this->response(array("message" => "Invalid Transaction Id"), 404);
             
             $merchant_data = $this->merchants_model->get_all($transaction_data->merchant_id);
-            if (!count($merchant_data))$this->response("Merchant Not Found", 404);
+            if (!count($merchant_data)) $this->response(array("message" => "Merchant Not Found"), 404);
              
             $post_array = array(
                 'smsCode' => $validation_data['smsCode'],
@@ -94,7 +96,7 @@ class purchase extends TellerPoint_Controller {
             curl_close($curl_handle);
 
             if (curl_errno($curl_handle))
-                $this->response(curl_error($curl_handle), REST_Controller::HTTP_EXPECTATION_FAILED);
+                $this->response(array("message" => curl_error($curl_handle)), REST_Controller::HTTP_EXPECTATION_FAILED);
 
             //update the transaction to success
             $this->purchase_model->save_update(array('status' => 'Approved'), $validation_data['transaction_id']);
@@ -106,7 +108,9 @@ class purchase extends TellerPoint_Controller {
             
             $this->response($result);
                     
-         } else
-            $this->response(strip_tags(validation_errors()), 400);
+         } else{
+            $error = array("message" => strip_tags(validation_errors()));
+            $this->response($error, REST_Controller::HTTP_BAD_REQUEST);
+        }
     }
 }
