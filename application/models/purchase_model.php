@@ -11,14 +11,14 @@
  *
  * @author Maxwell
  */
-class products_model extends TellerPoint_Model {
+class purchase_model extends TellerPoint_Model {
 
     //put your code here
     function __construct() {
         parent::__construct();
     }
     
-    protected $_table_name = 't_products';
+    protected $_table_name = 't_transactions';
     protected $_primary_key = 'id';
     protected $_order_by = 'datecreated desc';
     
@@ -28,31 +28,38 @@ class products_model extends TellerPoint_Model {
             'label' => 'Merchant Id',
             'rules' => 'required|trim|numeric'
         ),
-         'name' => array(
-            'field' => 'product_name',
-            'label' => 'Product Name',
+         'proid' => array(
+            'field' => 'product_id',
+            'label' => 'Product Id',
+            'rules' => 'required|trim|numeric'
+        ),
+         'phone' => array(
+            'field' => 'customer_phone',
+            'label' => 'Phone',
             'rules' => 'required|trim'
         ),
-         'desc' => array(
-            'field' => 'product_desc',
-            'label' => 'Description',
-            'rules' => 'required|trim'
-        ),
-         'img' => array(
-            'field' => 'product_img',
-            'label' => 'Image',
-            'rules' => 'required|trim'
-        ),
-         'code' => array(
-            'field' => 'product_code',
-            'label' => 'Product Code',
-            'rules' => 'required|trim|is_unique[t_products.product_code]'
+         'qty' => array(
+            'field' => 'qty',
+            'label' => 'Quantity',
+            'rules' => 'required|trim|numeric'
         ),
          'amt' => array(
-            'field' => 'product_amount',
+            'field' => 'amount',
             'label' => 'Amount',
             'rules' => 'required|trim|numeric'
         )
     );
     
+    public $_sms_validation_rules = array(
+            array(
+                'field' => 'smsCode',
+                'label' => 'Sms Code',
+                'rules' => 'required|trim|numeric'
+            ),
+            array(
+                'field' => 'transaction_id',
+                'label' => 'Transaction Id',
+                'rules' => 'required|trim|numeric'
+            )
+        );
 }
