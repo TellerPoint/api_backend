@@ -11,7 +11,7 @@
  *
  * @author Maxwell
  */
-class products extends TellerPoint_Controller {
+class Products extends TellerPoint_Controller {
     //put your code here
       //put your code here
     function __construct($config = 'rest') {

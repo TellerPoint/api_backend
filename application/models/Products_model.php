@@ -11,7 +11,7 @@
  *
  * @author Maxwell
  */
-class products_model extends TellerPoint_Model {
+class Products_model extends TellerPoint_Model {
 
     //put your code here
     function __construct() {

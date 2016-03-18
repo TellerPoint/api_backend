@@ -11,7 +11,7 @@
  *
  * @author Maxwell
  */
-class merchants_model extends TellerPoint_Model {
+class Merchants_model extends TellerPoint_Model {
 
     //put your code here
     function __construct() {
