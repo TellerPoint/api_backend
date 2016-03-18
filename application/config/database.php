@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => 'TellerPoint.db',
-	'dbdriver' => 'sqlite3',
+	'hostname' => 'ec2-54-83-40-119.compute-1.amazonaws.com',
+	'username' => 'quirinlotuyvxx',
+	'password' => 'jT3Nvv_q6AlEjZz_W1maq-8uXK',
+	'database' => 'dcgflkbkf61fkf',
+	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
