@@ -31,14 +31,17 @@ class Merchants extends TellerPoint_Controller {
                $value->products = $this->products_model->get_where(array('merchant_id'=>$value->id));                  
             }
             
-            $this->response($result);
+            $data = array("merchants" => $result);
+            $this->response($data);
         }
         else{
             $result = $this->merchants_model->get_all($id);
             if(count($result)){
                $result = (array) $result; 
                $result['products'] = $this->products_model->get_where(array('merchant_id'=>$result['id']));
-               $this->response($result, 200);
+               
+               $data = array("merchants" => $result);
+               $this->response($data);
             }
         }
          $this->response(array("message" => "Resource Not Found"), 404);
