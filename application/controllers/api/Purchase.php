@@ -30,7 +30,7 @@ class Purchase extends TellerPoint_Controller {
         $_rules = $this->purchase_model->_rules;
 
         $this->form_validation->set_rules($_rules);
-        if ($this->form_validation->run()) {
+        //if ($this->form_validation->run()) {
 
             $_mid = $purchase_data['merchant_id'];
             $merchant_data = $this->merchants_model->get_all($_mid);
@@ -67,10 +67,10 @@ class Purchase extends TellerPoint_Controller {
             log_message('info', 'Response to Client => ' . $data);
             $this->response($data);
             
-        } else{
-            $error = array("message" => strip_tags(validation_errors()));
-            $this->response($error, REST_Controller::HTTP_BAD_REQUEST);
-        }
+//        } else{
+//            $error = array("message" => strip_tags(validation_errors()));
+//            $this->response($error, REST_Controller::HTTP_BAD_REQUEST);
+//        }
     }
 
     public function validate_post() {
