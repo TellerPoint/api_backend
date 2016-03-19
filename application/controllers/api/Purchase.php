@@ -25,6 +25,8 @@ class Purchase extends TellerPoint_Controller {
     public function data_post() {
 
         $purchase_data = $this->array_from_verb();
+        log_message('info', 'Purchase Data => ' . $purchase_data);
+        
         $_rules = $this->purchase_model->_rules;
 
         $this->form_validation->set_rules($_rules);
@@ -47,6 +49,8 @@ class Purchase extends TellerPoint_Controller {
                 'amount' => $purchase_data['product_amount']
             );
 
+            log_message('info', 'Data To VFCASH => ' . $post_array);
+            
             $curl_handle = curl_init();
             curl_setopt($curl_handle, CURLOPT_URL, config_item('vfcash_api_url') . 'SendSMS.php');
             curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
@@ -59,7 +63,9 @@ class Purchase extends TellerPoint_Controller {
             if (curl_errno($curl_handle) || trim($buffer) != 'success')
                 $this->response(array("message" => curl_error($curl_handle)), REST_Controller::HTTP_EXPECTATION_FAILED);
 
-            $this->response($this->purchase_model->get_all($tranid));
+            $data = $this->purchase_model->get_all($tranid);
+            log_message('info', 'Response to Client => ' . $data);
+            $this->response($data);
             
         } else{
             $error = array("message" => strip_tags(validation_errors()));
