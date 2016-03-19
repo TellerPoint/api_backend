@@ -22,9 +22,9 @@ class Purchase extends TellerPoint_Controller {
         $this->load->model('merchants_model');
     }
 
-    public function data_post() {
+    public function data_get() {
 
-        $purchase_data = $this->array_from_verb();
+        $purchase_data = $this->array_from_verb('get');
         log_message('info', 'Purchase Data => ' . $purchase_data);
         
         $_rules = $this->purchase_model->_rules;

@@ -65,6 +65,7 @@ $route['api/products']             = 'api/products/data';
 $route['api/products/(:num)']      = 'api/products/data/id/$1';
 
 $route['api/purchase']             = 'api/purchase/data';
+$route['api/purchase/(:num)/(:num)/(:any)/(:num)/(:num)']  = 'api/purchase/data/merchant_id/$1/product_id/$2/customer_phone/$3/qty/$4/amount/$5';
 
 $route['api/merchants/products']             = 'api/merchants/products';
 $route['api/merchants/products/(:num)']      = 'api/merchants/products/mid/$1';
