@@ -40,8 +40,8 @@ class Merchants extends TellerPoint_Controller {
                $result = (array) $result; 
                $result['products'] = $this->products_model->get_where(array('merchant_id'=>$result['id']));
                
-               $data = array("merchants" => $result);
-               $this->response($data);
+               //$data = array("merchants" => $result);
+               $this->response($result);
             }
         }
          $this->response(array("message" => "Resource Not Found"), 404);
@@ -113,7 +113,7 @@ class Merchants extends TellerPoint_Controller {
                 
         if ($pid == NULL){
             $result = $this->products_model->get_where(array('merchant_id'=>$mid));
-            $this->response($result);
+            $this->response(array('products' => $result));
         }
         else{
             $result = $this->products_model->get_where(array('id' =>$pid, 'merchant_id'=>$mid));

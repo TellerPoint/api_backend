@@ -24,7 +24,7 @@ class Products extends TellerPoint_Controller {
         
         if ($id == NULL){
             $result = $this->products_model->get_all();
-            $this->response($result);
+            $this->response(array('products' => $result));
         }
         else{
             $result = $this->products_model->get_all($id);
